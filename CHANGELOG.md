@@ -1,6 +1,14 @@
-## 2.4.3
+## 2.6.0-wip
 
-* Show alias(es) in usage
+* Added source argument when throwing a `ArgParserException`.
+* Fix inconsistent `FormatException` messages
+* Require Dart 3.3
+
+## 2.5.0
+
+* Introduce new typed `ArgResults` `flag(String)`, `option(String)`, and
+  `multiOption(String)` methods.
+* Require Dart 3.0.
 
 ## 2.4.2
 

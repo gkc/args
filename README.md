@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> This repo has moved to https://github.com/dart-lang/core/tree/main/pkgs/args
+
 [![Dart CI](https://github.com/dart-lang/args/actions/workflows/test-package.yml/badge.svg)](https://github.com/dart-lang/args/actions/workflows/test-package.yml)
 [![pub package](https://img.shields.io/pub/v/args.svg)](https://pub.dev/packages/args)
 [![package publisher](https://img.shields.io/pub/publisher/args.svg)](https://pub.dev/packages/args/publisher)
@@ -111,8 +114,8 @@ parser.addOption('mode');
 parser.addFlag('verbose', defaultsTo: true);
 var results = parser.parse(['--mode', 'debug', 'something', 'else']);
 
-print(results['mode']); // debug
-print(results['verbose']); // true
+print(results.option('mode')); // debug
+print(results.flag('verbose')); // true
 ```
 
 By default, the `parse()` method allows additional flags and options to be
@@ -187,7 +190,7 @@ overriding earlier ones; for example:
 var parser = ArgParser();
 parser.addOption('mode');
 var results = parser.parse(['--mode', 'on', '--mode', 'off']);
-print(results['mode']); // prints 'off'
+print(results.option('mode')); // prints 'off'
 ```
 
 Multiple values can be parsed with `addMultiOption()`. With this method, an
@@ -198,7 +201,7 @@ values:
 var parser = ArgParser();
 parser.addMultiOption('mode');
 var results = parser.parse(['--mode', 'on', '--mode', 'off']);
-print(results['mode']); // prints '[on, off]'
+print(results.multiOption('mode')); // prints '[on, off]'
 ```
 
 By default, values for a multi-valued option may also be separated with commas:
@@ -207,7 +210,7 @@ By default, values for a multi-valued option may also be separated with commas:
 var parser = ArgParser();
 parser.addMultiOption('mode');
 var results = parser.parse(['--mode', 'on,off']);
-print(results['mode']); // prints '[on, off]'
+print(results.multiOption('mode')); // prints '[on, off]'
 ```
 
 This can be disabled by passing `splitCommas: false`.
@@ -326,7 +329,7 @@ class CommitCommand extends Command {
   void run() {
     // [argResults] is set before [run()] is called and contains the flags/options
     // passed to this command.
-    print(argResults['all']);
+    print(argResults.flag('all'));
   }
 }
 ```
